@@ -1,4 +1,4 @@
- Rails.application.routes.draw do
+Rails.application.routes.draw do
   
   devise_for :users
   root to: 'homes#top'
@@ -9,4 +9,9 @@
   end
   resources :users, only: [:show, :edit, :update]
   
-end
+  devise_scope :user do
+    delete '/users/sign_out', to: 'devise/sessions#destroy', as: :custom_destroy_user_session
+    
+  end
+  
+end 
